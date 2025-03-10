@@ -1,3 +1,27 @@
+function ChartBarConfig() {
+  this.type = 'bar';
+  this.options = {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 20 } },
+    elements: { line: { fill: false, tension: 0.4 } },
+    scales: {
+      x: { display: true, offset: true },
+      y: { display: false, offset: false, beginAtZero: true }
+    },
+    plugins: {
+      title: { display: true, align: 'center', padding: {top: 0, bottom: 50 }, font: { weight: 'bolder', size: 14 } },
+      legend: { position: 'bottom', align: 'center', labels: { font: {size: 9 } } }, 
+      datalabels: {
+        align: 'end', anchor: 'end',
+        font: function(ctx) { return { size: ctx.chart.width < 512 ? 11 : 14 } }
+      },
+      tooltip: {
+        callbacks: {}
+      }
+    }
+  };
+}
+
 function drawBarChart(arr,title,canvas) {
   let labels = arr.slice(0,1)[0].slice(1);
   let dt = arr.slice(1,-2);
